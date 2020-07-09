@@ -8,36 +8,17 @@
       div {
         text-align: center;
       }
-      .searchbar{
+      .searchbar {
         position: center;
       }
-      .searchbar input{
+      .searchbar input {
         height: 30px;
         width: 50%;
       }
     </style>
     <meta charset="UTF-8" />
-    <meta name="description" content="Checking matches and shit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leauge Statistics</title>
-    <script type="text/javascript">
-      var HttpClient = function () {
-        this.get = function (aUrl, aCallback) {
-          var anHttpRequest = new XMLHttpRequest();
-          anHttpRequest.onreadystatechange = function () {
-            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-              aCallback(anHttpRequest.responseText);
-          };
-          anHttpRequest.open("GET", aUrl, true);
-          anHttpRequest.send(null);
-        };
-      };
-      var theurl = "http://localhost:8081/summoner/Merong/matches";
-      var client = new HttpClient();
-      client.get(theurl, function (response) {
-        var response1 = JSON.parse(response);
-        console.log(response1);
-      });
-    </script>
   </head>
   <body>
     <header></header>
@@ -47,13 +28,23 @@
       <a href="#contact">Contact</a>
     </nav>
     <main>
-      <h1>Leauge statistics</h1>
-      <div class="searchbar">
-        <form>
-          <input type="text" placeholder="Search for summonernames" />
-        </form>
+      <div class="container">
+        <h1>Leauge statistics</h1>
+        
+        <div class="searchbar">
+            
+          <input
+              type="text"
+              name="search"
+              id="searchBar"
+              placeholder="Search for summonernames"
+            />
+
+            <ul id="leaugeChamps"></ul>
+        </div>
       </div>
     </main>
     <footer></footer>
+    <script src="app.js"></script>
   </body>
 </html>
