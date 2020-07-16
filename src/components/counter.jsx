@@ -1,12 +1,9 @@
 import React, { Component } from "react";
+import styles from "./styles.module.css";
 
 class Counter extends Component {
   state = {
     title: <h1>Leauge statistics</h1>,
-  };
-
-  styleSearchBar = {
-    width: "500px",
   };
 
   styleButton = {
@@ -16,11 +13,10 @@ class Counter extends Component {
   render() {
     return (
       <React.Fragment>
-        <span>{this.state.title}</span>
+        <span className={styles.title}>{this.state.title}</span>
         <input
-          style={this.styleSearchBar}
           type="text"
-          className="input"
+          className={styles.inputSearch}
           id="addInput"
           placeholder="Search for a champion"
         ></input>
