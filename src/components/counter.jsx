@@ -9,11 +9,16 @@ class Counter extends Component {
     width: "500px",
   };
 
+  styleButton = {
+    width: "500px",
+  };
+
   render() {
     return (
       <React.Fragment>
         <span>{this.state.title}</span>
         <input
+          style={this.styleSearchBar}
           type="text"
           className="input"
           id="addInput"
