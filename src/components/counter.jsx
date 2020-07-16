@@ -5,6 +5,10 @@ class Counter extends Component {
     title: <h1>Leauge statistics</h1>,
   };
 
+  styleSearchBar = {
+    width: "500px",
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -15,7 +19,12 @@ class Counter extends Component {
           id="addInput"
           placeholder="Search for a champion"
         ></input>
-        <button className="btn btn-secondary btn-sm m-2">Search</button>
+        <button
+          className="btn btn-info btn-sm m-2"
+          styleButton={this.styleButton}
+        >
+          Search
+        </button>
       </React.Fragment>
     );
   }
