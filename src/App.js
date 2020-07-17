@@ -9,10 +9,13 @@ function App() {
     results: [],
     selected: {}
   });
+
+
   const apiUrl = "http://127.0.0.1:8081/summoner/";
+
   const search = (e) => {
     if (e.key ==="Enter"){
-        axios(apiUrl + state.s).then(({data}) => {
+        axios.get(apiUrl + state.s).then(({data}) => {
           let results = data;
           console.log(data);
           setState(prevState => {
@@ -21,6 +24,8 @@ function App() {
         });
     }
   }
+
+
   const handleInput = (e) => {
     let s = e.target.value;
 
@@ -29,6 +34,7 @@ function App() {
     });
     console.log(state.s);
   }
+
   return (
     <div className="App">
       <header className="App-header">
