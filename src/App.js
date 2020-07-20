@@ -11,7 +11,7 @@ function App() {
   });
 
 
-  const apiUrl = "http://127.0.0.1:8081/summoner/";
+  const apiUrl = "http://ec2-34-211-48-51.us-west-2.compute.amazonaws.com:8081/summoner/";
 
   const search = (e) => {
     if (e.key ==="Enter"){
