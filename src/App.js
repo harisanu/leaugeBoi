@@ -1,7 +1,15 @@
 import React, { useState } from 'react'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+/*
 import Search from './components/Search'
 import Results from './components/Results'
+*/
 import axios from 'axios'
+import Navbar from './components/layout/Navbar';
+import Index from './components/layout/Index';
+import MatchDetails from './components/league/MatchDetails';
+
+import { Provider } from './context';
 
 function App() {
   const [state, setState] = useState({
@@ -11,17 +19,17 @@ function App() {
   });
 
 
-  const apiUrl = "http://ec2-34-211-48-51.us-west-2.compute.amazonaws.com:8081/summoner/";
+  const apiUrl = "http://127.0.0.1:8081/summoner/";
 
   const search = (e) => {
-    if (e.key ==="Enter"){
-        axios.get(apiUrl + state.s).then(({data}) => {
-          let results = data;
-          console.log(data);
-          setState(prevState => {
-            return {...prevState, results: results}
-          });
+    if (e.key === "Enter") {
+      axios.get(apiUrl + state.s).then(({ data }) => {
+        let results = data;
+        console.log(data);
+        setState(prevState => {
+          return { ...prevState, results: results }
         });
+      });
     }
   }
 
@@ -36,15 +44,21 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>League Statistics</h1>
-      </header>
-      <main>
-        <Search handleInput={handleInput} search={search}/>
-        <Results results={state.results}/>
-      </main>
-    </div>
+    <Provider>
+      <Router>
+        <React.Fragment>
+            <Navbar />
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={Index} />
+                <Route exact path="/matches/match/:id" component={MatchDetails} />
+              </Switch>
+            </div>
+        </React.Fragment>
+      </Router>
+    </Provider>
+
+
   );
 }
 
