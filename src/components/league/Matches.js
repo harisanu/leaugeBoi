@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 
 const Matches =() => {
 
+
 const match_list = useSelector(state => state.details.matches)
 
                     if (match_list === undefined || match_list.length === 0) {
@@ -17,8 +18,9 @@ const match_list = useSelector(state => state.details.matches)
                                 
                                 <div className="row">
                                     {match_list.matches.map(item =>(
+                                        
                                         <Match key={item.gameId} match={item}/>
-                                    ))}
+                                    ))}                                    
                                 </div>
                             </>
 

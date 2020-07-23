@@ -1,5 +1,4 @@
 import React from 'react'
-
 import ironRank from '../../assets/images/Emblem_Iron.png';
 import bronzeRank from '../../assets/images/Emblem_Bronze.png';
 import silverRank from '../../assets/images/Emblem_Silver.png';
@@ -23,20 +22,18 @@ var rankedPics = {
 }
 function SummonerPage ({ result }) {
     return (
-        <div className="card">
 
-            <div className="card">
-                <div className="ui small image">
-                </div>
-                
+<div className="float-left">
+<div className="card">
+                <img src={rankedPics[result.tier]} style={{width: '100px', height: '100px'}}/>
+            
                 <h1 className="card-title">{result.summonerName}</h1>
                 <h5 className="card-title">Queue: {result.queueType}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">Rank: {result.tier} {result.rank}</h6>
                 <p className="card-text">Wins: {result.wins} Losses: {result.losses}</p>
             </div>
-        </div>
-        
-    )
+</div>
+)
 }
 
 export default React.memo(SummonerPage)

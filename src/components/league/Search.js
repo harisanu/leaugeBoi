@@ -31,7 +31,7 @@ const Search = () => {
         <i className="fa fa-search">Search for a Summoner</i>
       </h1>
       
-
+      
       <p className="lead text-center">Get the latest match details </p>
       <form onSubmit={onSubmit}>
         <div className="form-group">
