@@ -21,7 +21,7 @@ var rankedPics = {
     "GRANDMASTER": grandmasterRank,
     "CHALLENGER": challengerRank
 }
-function Result({ result }) {
+function Result ({ result }) {
     return (
         <div className={styles.card}>
 

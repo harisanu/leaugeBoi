@@ -1,28 +1,33 @@
-import React, { Component } from 'react'
-import axios from 'axios';
-const Context = React.createContext();
+/*
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+export const Context = React.createContext();
 
-export class Provider extends Component {
+export function ContextController({ children }) {
+  let intialState = {
+    match_list: [],
+    heading: "",
+  };
 
-    state = {
-        match_list: [],
-        heading: 'Match list'
-    };
-    componentDidMount(){
-        axios.get(`http://127.0.0.1:8081/matches/SalatblandingLux`)
-            .then(res => {
-                this.setState({match_list: res.data.matches});  
-            })
-            .catch(err=>console.log(err));
-    }
+  const [state, setState] = useState(intialState);
 
-    render() {
-        return (
-            <Context.Provider value={this.state}>
-                {this.props.children}
-            </Context.Provider>
-        );
-    }
+  useEffect(() => {
+    axios
+      .get(
+        `http://127.0.0.1:8081/matches/`
+      )
+      .then((res) => {
+        setState({
+          match_list: res.data.matches,
+          heading: "Recent Matches",
+        });
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  return (
+    <Context.Provider value={[state, setState]}>{children}</Context.Provider>
+  );
 }
 
-export const Consumer = Context.Consumer;
+*/

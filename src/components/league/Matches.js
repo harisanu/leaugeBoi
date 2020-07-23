@@ -1,35 +1,31 @@
-import React, { Component } from 'react'
-import { Consumer } from '../../context'
+import React, { useContext } from 'react'
+import { Context } from '../../context'
 import Spinner from '../layout/Spinner'
 import Match from '../league/Match'
+import { useSelector } from 'react-redux'
 
-class Matches extends Component {
-    render() {
-        return (
-            <Consumer>
-                {value => {
-                    const { match_list, heading } = value;
+
+const Matches =() => {
+
+const match_list = useSelector(state => state.details.matches)
+
                     if (match_list === undefined || match_list.length === 0) {
                         return <Spinner />
                     } else {
                         return (
-                            <React.Fragment>
-                                <h3 className="text-center mb-4">{heading}</h3>
+                            <>
+                                
                                 <div className="row">
-                                    {match_list.map(item =>(
+                                    {match_list.matches.map(item =>(
                                         <Match key={item.gameId} match={item}/>
                                     ))}
                                 </div>
-                            </React.Fragment>
+                            </>
 
                         );
 
 
                     }
-                }}
-            </Consumer>
-        )
     }
-}
 
 export default Matches;

@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector} from "react-redux";
 const Match = (props) =>{
     const {match} = props;
+    const summonerDetails = useSelector(state => state.details.summonerDetails);
+    
+   
     return (
+    
         <div className="col-md-4">
             <div className="card mb-4 shadow-sm">
                 <div className="card-body">
