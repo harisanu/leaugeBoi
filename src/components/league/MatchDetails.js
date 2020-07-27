@@ -6,21 +6,35 @@ import { Link } from "react-router-dom";
 import Spinner from "../layout/Spinner";
 import { useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
-import { FETCH_MATCH_DETAILS } from "../../actions";
+import { FETCH_MATCH_DETAILS, CLEAN_UP_MATCH_DETAILS} from "../../actions";
 const MatchDetails = props => {
   //const [matchDetails, setMatchDetails] = useState({});
 
   const dispatch = useDispatch();
   const detailsList = useSelector(state => state.details.matchDetails);
+  var champions = require('../../assets/data/champions.json');
+
+  
   const RenderPlayerStats = React.memo(({data})=>{
     return data[0].participants.map((participant, index) => {
-      return(
+      const champ = champions.find((champ) => champ.key === String(participant.championId))
+      if(champ !== undefined){
+        return(
         
-        <div>
-        {participant.stats.kills}/{participant.stats.deaths}/{participant.stats.assists} {data[0].participantidentities[index].player.summonerName}
-
-        </div>
-      )
+          <div className="row">
+          {participant.stats.kills}/{participant.stats.deaths}/{participant.stats.assists} {data[0].participantidentities[index].player.summonerName} <img src={champ.icon}/>
+          </div>
+        )
+      }
+      else{
+        return (
+          <div className="row">
+            
+          {participant.stats.kills}/{participant.stats.deaths}/{participant.stats.assists} {data[0].participantidentities[index].player.summonerName}
+          </div>
+        )
+      }
+      
     })
   })
 
@@ -30,6 +44,10 @@ const MatchDetails = props => {
       dispatch({
         type: FETCH_MATCH_DETAILS,
         payload: props.match.params.id,
+      });
+
+      dispatch({
+        type: CLEAN_UP_MATCH_DETAILS,
       });
     }
   }, [props.match.params.id])

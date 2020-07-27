@@ -15,7 +15,8 @@ import {
     FETCH_SUMMONER_DETAILS_SUCCEESS,
     FETCH_TOP_SUMMONER,
     FETCH_TOP_SUMMONER_SUCCEESS,
-    FETCH_TOP_SUMMONER_ERROR
+    FETCH_TOP_SUMMONER_ERROR,
+    CLEAN_UP_MATCH_DETAILS
 } from '../actions';
 const initialState = {   
     summoner: {}, 
@@ -178,6 +179,13 @@ export default function reduxSagaReducer(state = initialState, action) {
         }                   
         default: {           
             return state;       
-        }   
+        }
+
+        case CLEAN_UP_MATCH_DETAILS: { 
+            return {               
+                ...state,               
+                matchDetails: []
+            };       
+        }                   
     }
 }
